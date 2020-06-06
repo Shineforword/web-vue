@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <script src="vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <!-- 组件使用 -->
+      <button-counter></button-counter>
+      <!-- 重用:相互之间数据不影响(相当于都是新的实例) -->
+    </div>
+    <script>
+      Vue.component('button-counter', {
+        // 注意::::::::::::::::::::::::::::::;
+        //组件数据:函数  data必须是函数  Vue中是对象
+        // ::::::::::::::::::::::::::::::::::
+        data: function () {
+          return {
+            count: 0,
+          };
+        },
+        // 组件模板内容:字符串
+        // 注意::::::::::::::::::::::::::::::::
+        // 组件模板必须有确切的根元素(有根节点)
+        // ::::::::::::::::::::::::::::::::::::
+        //可以是模板字符串:注意是反引号 对应的模板内容多时 需要浏览器支持(ES6语法)
+        // ::::::::::::::::::::::::::::::::::::::
+        template: `<div>
+      <button @click="count++">点击{{count}}次</button>
+      <button>{{count}}</button>
+      <button>{{count}}</button>
+      </div>`,
+        // ::::::::::::::::::::::::::::::::::::::
+
+        //函数
+        methods: {
+          handle: function (val) {
+            this.count = this.count + val;
+          },
+        },
+      });
+      var vm = new Vue({
+        el: '#app',
+        data: {
+          msg: '',
+        },
+        methods: {
+          handle: function () {},
+        },
+        directives: {},
+      });
+    </script>
+  </body>
+</html>

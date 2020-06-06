@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <script src="vue.js"></script>
+    <script src="../jQuery/jquery.min.js"></script>
+  </head>
+  <body>
+    <!-- 传统模式:原生 -->
+    <div id="msg1"></div>
+    <!-- 传统模式:jQuery -->
+    <div id="msg2"></div>
+    <!-- Vue 填充数据时使用{{}}插值表达式支持一些简单的计算-->
+    <div id="app">{{msg}}</div>
+    <!-- 基本使用步骤
+      1.需要提供标签用于填充数据
+      2.引入Vue.js库文件
+      3.可以使用Vue的语法
+      4.把Vue提供的数据填充到标签中
+      
+      Vue:编译Vue语法->原生js语法
+     -->
+
+    <script>
+      var msg = 'Hello World!';
+      //原生
+      var div1 = document.getElementById('msg1');
+      div1.innerHTML = msg;
+      //jQuery
+      $('#msg2').html(msg);
+      //Vue 的基本使用步骤
+      var vm = new Vue({
+        // el:元素的挂载位置(关联)(可以是CSS选择器 也可以是DOM元素)
+        el: '#app',
+        // data:模型数据(值是一个对象)
+        data: {
+          msg: 'Hello Vue',
+          // 填充数据时使用{{}}插值表达式支持一些简单的计算
+        },
+      });
+      // 不再操作DOM
+    </script>
+  </body>
+</html>

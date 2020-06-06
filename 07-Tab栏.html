@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <script src="vue.js"></script>
+    <style>
+      .tab ul {
+        overflow: hidden;
+        padding: 0;
+        margin: 0;
+      }
+      .tab ul li {
+        box-sizing: border-box;
+        padding: 0;
+        float: left;
+        width: 100px;
+        height: 45px;
+        line-height: 45px;
+        list-style: none;
+        text-align: center;
+        border-top: 1px solid blue;
+        border-right: 1px solid blue;
+        cursor: pointer;
+      }
+      .tab ul li:first-child {
+        border-left: 1px solid blue;
+      }
+      .active {
+        background-color: pink;
+      }
+      .tab div {
+        width: 500px;
+        height: 300px;
+        display: none;
+        text-align: center;
+        line-height: 300px;
+        border: 1px solid blue;
+        border-top: 0px;
+      }
+      .tab div.current {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 声明式编程 -->
+    <div id="app">
+      <div class="tab">
+        <!-- 模板语法重构 -->
+        <ul>
+          <li
+            :class='currentIndex == index ?"active":""'
+            :key="item.id"
+            v-for="(item,index) in list"
+            v-on:click="handle(index)"
+          >
+            {{item.title}}
+          </li>
+        </ul>
+        <div
+          :class='currentIndex == index ?"current":""'
+          :key="item.id"
+          v-for="(item,index) in list"
+        >
+          <img v-bind:src="item.path" alt="" />
+        </div>
+      </div>
+    </div>
+    <script>
+      var vm = new Vue({
+        el: '#app',
+        data: {
+          currentIndex: 0,
+          list: [
+            {
+              id: '1',
+              title: 'A',
+              path:
+                'http://www.ymfcgw.com/uploads/e_article/2018/01/1515628894.jpg',
+            },
+            {
+              id: '2',
+              title: 'B',
+              path:
+                'http://img.zcool.cn/community/01b703595da576a8012193a343f99c.jpg',
+            },
+            {
+              id: '3',
+              title: 'C',
+              path:
+                'http://b-ssl.duitang.com/uploads/item/201607/27/20160727001035_A3cXY.thumb.700_0.jpeg',
+            },
+          ],
+        },
+        methods: {
+          // 携带参数
+          handle: function (index) {
+            // 切换的本质操作类名 通过索引操作
+            this.currentIndex = index;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

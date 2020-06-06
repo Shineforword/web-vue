@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <script src="vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <div>{{fmsg}}</div>
+      <!-- 静态 -->
+      <menu-item title="来自父组件的值"></menu-item>
+      <!-- 动态 -->
+      <menu-item :title="ptitle"></menu-item>
+    </div>
+    <script>
+      /*父组件向子组件传值:
+       */
+      Vue.component('menu-item', {
+        //接收
+        props: ['title'],
+        //子组件数据
+        data: function () {
+          return {
+            msg: '子组件本身数据',
+          };
+        },
+        template: '<div>{{msg+"------"+title}}</div>',
+      });
+      var vm = new Vue({
+        el: '#app',
+        data: {
+          fmsg: '父组件中的内容',
+          ptitle: '动态绑定属性',
+        },
+        methods: {
+          handle: function () {},
+        },
+      });
+    </script>
+  </body>
+</html>

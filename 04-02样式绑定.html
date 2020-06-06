@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <script src="vue.js"></script>
+    <style>
+      .active {
+        border: 1px solid rebeccapurple;
+        width: 100px;
+        height: 100px;
+      }
+      .error {
+        background-color: pink;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- class样式处理 -->
+    <!-- 数组语法:<div v-bind:class='[activeClass,errorClass]'></div> -->
+    <div id="app">
+      <div v-bind:class="[activeClass,errorClass]"></div>
+      <button v-on:click="handle">切换</button>
+    </div>
+    <script>
+      //样式绑定
+      var vm = new Vue({
+        el: '#app',
+        data: {
+          activeClass: 'active',
+          errorClass: 'error',
+        },
+        methods: {
+          handle: function () {
+            this.activeClass = '';
+            this.errorClass = '';
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

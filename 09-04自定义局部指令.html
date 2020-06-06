@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <script src="vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <div v-color="msg">123</div>
+      <input type="text" v-focus />
+    </div>
+    <script>
+      // 自定义指令-局部指令
+      var vm = new Vue({
+        el: '#app',
+        data: {
+          msg: {
+            color: 'red',
+          },
+        },
+        methods: {
+          handle: function () {},
+        },
+        directives: {
+          color: {
+            bind: function (el, binding) {
+              //根据指令的参数设置背景色
+              // console.log(binding.value.color);
+              el.style.backgroundColor = binding.value.color;
+            },
+          },
+          focus: {
+            inserted: function (el) {
+              el.focus();
+            },
+          },
+        },
+      });
+      // 局部指令只能在本组件中使用
+      // 全局指令
+    </script>
+  </body>
+</html>

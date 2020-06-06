@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <script src="vue.js"></script>
+    <style>
+      .active {
+        border: 1px solid rebeccapurple;
+        width: 100px;
+        height: 100px;
+      }
+      .error {
+        background-color: pink;
+      }
+      .test {
+        color: blue;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 对象绑定和数组绑定可以结合使用 -->
+    <!-- class绑定的值可以简化处理 -->
+    <!-- 默认的class处理 :默认的class会保留-->
+    <!-- class样式处理 -->
+    <!-- 数组语法:<div v-bind:class='[activeClass,errorClass]'></div> -->
+    <div id="app">
+      <!-- <div v-bind:class="[activeClass,errorClass,{test:isTest}]">测试</div> -->
+      <!-- 简化写法:关联数组 也可以关联对象-->
+      <div v-bind:class="objClass">测试</div>
+      <!-- <div v-bind:class="arrClass">测试</div> -->
+      <button v-on:click="handle">切换</button>
+    </div>
+    <script>
+      //样式绑定
+      var vm = new Vue({
+        el: '#app',
+        data: {
+          isTest: true,
+          activeClass: 'active',
+          errorClass: 'error',
+          arrClasses: ['active', 'error'],
+          objClass: {
+            active: true,
+            test: true,
+          },
+        },
+        methods: {
+          handle: function () {
+            this.isTest = !this.isTest;
+            this.activeClass = '';
+            this.errorClass = '';
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

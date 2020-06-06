@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <script src="vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <input type="text" v-on:keyup.aaa="handle" v-model="info" />
+    </div>
+    <script>
+      // 自定义按键修饰符 对应的值必须是按键对应event keyCode对应的值  Vue.config.keyCodes.aaa = 65;
+      Vue.config.keyCodes.aaa = 65;
+      var vm = new Vue({
+        el: '#app',
+        data: {
+          info: '我是初始值',
+        },
+        methods: {
+          handle: function (event) {
+            console.log(event.keyCode);
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

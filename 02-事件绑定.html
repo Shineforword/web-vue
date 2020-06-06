@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <script src="vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <div>{{num}}</div>
+      <input type="button" v-on:click="num++" value="按钮1" />
+      <!-- 简写: -->
+      <input type="button" @click="num++" value="按钮2" />
+      <!-- 函数调用 -->
+      <input type="button" @click="handle" value="按钮3" />
+      <!--  -->
+      <input type="button" @click="handle()" value="按钮4" />
+    </div>
+
+    <!-- v-on:指令 后面加标准事件名 -->
+    <!-- v-on:指令 -->
+    <script>
+      var vm = new Vue({
+        el: '#app',
+        data: {
+          num: 0,
+        },
+        methods: {
+          handle: function () {
+            console.log(this);
+            // 这里的this是vue的实例对象 不可以直接访问num
+            this.num++;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

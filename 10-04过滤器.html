@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <script src="vue.js"></script>
+  </head>
+  <body>
+    <!-- 格式化 -->
+    <!-- 自定义过滤器 (可以级联使用)-->
+    <div id="app">
+      <div>{{msg|upper|lower}}</div>
+      <input type="text" v-model="msg" />
+      <!-- 属性绑定时也可以使用 -->
+      <div :abc="msg | upper">测试数据</div>
+    </div>
+    <script>
+      // 过滤器
+      //首字符大写
+      Vue.filter('upper', function (val) {
+        return val.charAt(0).toUpperCase() + val.slice(1);
+      });
+      Vue.filter('lower', function (val) {
+        return val.charAt(0).toLowerCase() + val.slice(1);
+      });
+
+      var vm = new Vue({
+        el: '#app',
+        data: {
+          msg: '',
+        },
+        methods: {
+          handle: function () {},
+        },
+        directives: {},
+      });
+    </script>
+  </body>
+</html>

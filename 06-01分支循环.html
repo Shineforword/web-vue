@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <script src="vue.js"></script>
+  </head>
+  <body>
+    <!-- v-if v-else v-else-if v-show -->
+
+    <div id="app">
+      <div v-if="score>=90">A</div>
+      <div v-else-if="score<90&&score>=80">B</div>
+      <div v-else-if="score<80&&score>=60">C</div>
+      <div v-else="score<60">D</div>
+      <div v-show="flag">v-show</div>
+      <!-- v-if 控制元素是否渲染到页面上 -->
+      <!-- v-show 控制元素样式是否显示display:none block  元素已渲染到页面上-->
+      <button v-on:click="handle">按钮</button>
+    </div>
+    <script>
+      var vm = new Vue({
+        el: '#app',
+        data: {
+          score: 12,
+          flag: false,
+        },
+        methods: {
+          handle: function () {
+            this.flag = !this.flag;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

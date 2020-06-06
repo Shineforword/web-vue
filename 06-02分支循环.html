@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <script src="vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <!-- v-for -->
+      <div>水果列表</div>
+      <ul>
+        <li v-for="item in fruits">{{item}}</li>
+      </ul>
+      <ul>
+        <li v-for="(item,index) in fruits">{{item + index}}</li>
+      </ul>
+      <ul>
+        <li v-for="item in myfruits">{{item.ch}}</li>
+      </ul>
+      <!-- 结合使用 -->
+      <ul>
+        <li v-if="item.ch == '香蕉'" v-for="item in myfruits">{{item.ch}}</li>
+      </ul>
+    </div>
+    <script>
+      var vm = new Vue({
+        el: '#app',
+        data: {
+          fruits: ['apple', 'banana', 'pear'],
+          myfruits: [
+            {
+              en: 'apple',
+              ch: '苹果',
+            },
+            {
+              en: 'banana',
+              ch: '香蕉',
+            },
+            {
+              en: 'pear',
+              ch: '未知',
+            },
+          ],
+        },
+        methods: {},
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>数据绑定</title>
+    <script src="vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <!--  插值表达式 有闪动问题-->
+      <div>{{msg}}</div>
+      <!--  v-text指令填充纯文本 没有闪动问题 -->
+      <div v-text="msg"></div>
+      <!-- v-html指令 填充html 存在安全问题:本网站内部数据可用,来自第三方的数据不可以使用-->
+      <div v-html="html"></div>
+      <!-- v-pre指令显示原始信息跳过Vue编译 -->
+      <div v-pre>{{msg}}</div>
+    </div>
+    <script>
+      var vm = new Vue({
+        el: '#app',
+        data: {
+          msg: '这是啥?',
+          html: '<a href="">这是啥?</a>',
+        },
+      });
+    </script>
+  </body>
+</html>

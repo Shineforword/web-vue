@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <style>
+      [v-cloak] {
+        display: none;
+      }
+    </style>
+    <script src="vue.js"></script>
+  </head>
+  <body>
+    <div id="app"><div v-cloak>{{msg}}</div></div>
+    <script>
+      //v-cloak 处理闪动
+      /*
+      1.提供样式[v-cloak]{
+        display:none,
+      }
+      2.在插值表达式所在的标签中添加v-clock指令
+      原理:先通过样式隐藏内容 在内存中进行值的替换,替换后再显示最终的结果
+      */
+      var vm = new Vue({
+        el: '#app',
+        data: {
+          msg: '这是啥?',
+        },
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <script src="vue.js"></script>
+  </head>
+  <body>
+    <!-- 双向数据绑定 -->
+    <div id="app">
+      <div v-text="msg"></div>
+      <div>
+        <input type="text" v-model="msg" />
+      </div>
+    </div>
+    <script>
+      var vm = new Vue({
+        el: '#app',
+        data: {
+          msg: '这是啥?',
+        },
+      });
+    </script>
+    <!-- MVVM 设计思想 -->
+    <!--  -->
+  </body>
+</html>

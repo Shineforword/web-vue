@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <script src="vue.js"></script>
+  </head>
+
+  <body>
+    <div id="app">
+      <!-- 内联样式 -->
+      <div
+        v-bind:style="{border:borderStyle,width:widthStyle,height:heightStyle}"
+      ></div>
+      <!-- 简化写法:对象语法,数组语法 -->
+      <div v-bind:style="objStyles"></div>
+      <div v-bind:style="[objStyles,overrideStyles]"></div>
+      <button v-on:click="handle">按钮</button>
+    </div>
+    <script>
+      var vm = new Vue({
+        el: '#app',
+        data: {
+          borderStyle: '1px solid blue',
+          widthStyle: '100px',
+          heightStyle: '200px',
+          objStyles: {
+            border: '1px solid red',
+            width: '100px',
+            height: '100px',
+          },
+          overrideStyles: {
+            border: '1px solid yellow',
+            backgroundColor: 'pink',
+          },
+        },
+        methods: {
+          handle: function () {
+            this.bordeStyle = '3px solid blue';
+            this.objStyles.width = '300px';
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <script src="vue.js"></script>
+  </head>
+
+  <body>
+    <div id="app">
+      <form action="">
+        <div>
+          用户名:
+          <input type="text" v-on:keyup.delete="clearContent" v-model="uname" />
+        </div>
+        <div>
+          密码:
+          <!--v-on:keyup.enter 绑定回车(按键修饰符)  -->
+          <input type="text" v-on:keyup.enter="handleSubmit" v-model="pwd" />
+        </div>
+        <div>
+          <input type="button" value="提交" v-on:click="handleSubmit" />
+        </div>
+      </form>
+    </div>
+    <script>
+      var vm = new Vue({
+        el: '#app',
+        data: {
+          uname: '',
+          pwd: '',
+        },
+        methods: {
+          handleSubmit: function () {
+            console.log(this.uname, this.pwd);
+          },
+          clearContent: function () {
+            // 按delete键清空
+            this.uname = '';
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

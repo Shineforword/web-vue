@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <script src="vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <!-- 组件使用 -->
+      <button-counter></button-counter>
+      <button-counter></button-counter>
+      <button-counter></button-counter>
+      <!-- 重用:相互之间数据不影响(相当于都是新的实例) -->
+    </div>
+    <script>
+      //全局组件注册
+      /*
+      Vue.component(组件名称,{
+        data:组件数据
+        template:组件模板内容
+      })
+      */
+      // 注意:如果是用驼峰式命名组件,在模板中可以直接使用,但是在上面需要转化成短横线
+      Vue.component('button-counter', {
+        //组件数据:函数
+        data: function () {
+          return {
+            count: 0,
+          };
+        },
+        // 组件模板内容:字符串
+        // template: '<button @click="count++">点击{{count}}次</button>',
+        //函数调用
+        template: '<button @click="handle(100)">点击{{count}}次</button>',
+        //函数
+        methods: {
+          handle: function (val) {
+            this.count = this.count + val;
+          },
+        },
+      });
+      var vm = new Vue({
+        el: '#app',
+        data: {
+          msg: '',
+        },
+        methods: {
+          handle: function () {},
+        },
+        directives: {},
+      });
+    </script>
+  </body>
+</html>

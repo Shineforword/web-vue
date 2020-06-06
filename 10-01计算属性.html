@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <script src="vue.js"></script>
+  </head>
+  <body>
+    <!-- 
+      计算属性:有缓存 计算属性是基于data中的数据做缓存的 可以提升性能 (依赖于data中的数据)
+      方法:无缓存
+     -->
+    <div id="app">
+      <div>{{msg}}</div>
+      <!-- 切割翻转拼接 -->
+      <div>{{msg.split('').reverse().join('')}}</div>
+      <!-- 计算属性:调用不需要加() -->
+      <div>{{reverseStr}}</div>
+      <div>{{reverseStr}}</div>
+      <div>{{reverseStr}}</div>
+      <!-- 缓存演示三次只计算一次 -->
+      <!-- 方法调用:需要加() -->
+      <div>{{reverseMsg()}}</div>
+      <div>{{reverseMsg()}}</div>
+      <div>{{reverseMsg()}}</div>
+      <!--  方法演示三次计算三次-->
+    </div>
+    <script>
+      // 自定义指令-局部指令
+      var vm = new Vue({
+        el: '#app',
+        data: {
+          msg: 'hello',
+        },
+        methods: {
+          reverseMsg: function () {
+            console.log('方法');
+            // 返回值
+            return this.msg.split('').reverse().join('');
+          },
+        },
+        // 计算属性:将复杂的表达式抽取,是模板更加整洁
+        computed: {
+          reverseStr: function () {
+            console.log('计算属性');
+            // 返回值
+            return this.msg.split('').reverse().join('');
+          },
+        },
+        directives: {},
+      });
+    </script>
+  </body>
+</html>

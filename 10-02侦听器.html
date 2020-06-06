@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="vue.js"></script>
+  </head>
+  <body>
+    <!-- 侦听器应用场景:数据变化时执行一步或开销较大的操作 -->
+    <div id="app">
+      <div>
+        <span>名:</span>
+        <span>
+          <input type="text" v-model="firstName" />
+        </span>
+      </div>
+      <span>姓:</span>
+      <span>
+        <input type="text" v-model="lastName" />
+      </span>
+      <div>{{fullName}}</div>
+      <div>{{fullName2}}</div>
+    </div>
+    </div>
+    <script>
+      var vm = new Vue({
+        el: '#app',
+        data: {
+          firstName: 'Jim',
+          lastName:'Green',
+          fullName:'Jim Green',
+        },
+        computed:{
+          fullName2:function(){
+            return this.firstName + ' ' + this.lastName;
+          }
+        },
+        watch:{
+          //侦听firstName
+          firstName:function(val){
+            this.fullName = val +' '+this.lastName;
+          },
+          //侦听lastName
+          lastName:function(val){
+            this.fullName =this.firstName+' '+ val ;
+          },
+        },
+        methods: {
+          handle: function () {},
+        },
+        directives: {},
+      });
+    </script>
+  </body>
+</html>

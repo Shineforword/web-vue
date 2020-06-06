@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>响应式</title>
+    <script src="vue.js"></script>
+  </head>
+  <body>
+    <!-- 响应式:h5中的响应式(屏幕尺寸变化导致样式变化) 
+         数据的响应式:数据的变化导致页面内容的变化(数据驱动页面内容显示)
+    -->
+    <!-- 数据绑定:将数据填充到标签中 -->
+    <!-- v-once 只编译一次(显示内容之后不再具有响应式功能) -->
+    <!-- v-once 应用场景:如果显示内容后不需要在修改,可以使用;可以提升性能 -->
+    <!--  -->
+    <div id="app">
+      <!--  v-text指令填充纯文本 没有闪动问题 -->
+      <div v-text="msg"></div>
+    </div>
+    <script>
+      var vm = new Vue({
+        el: '#app',
+        data: {
+          msg: '这是啥?',
+        },
+      });
+    </script>
+  </body>
+</html>

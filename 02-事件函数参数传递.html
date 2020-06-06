@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <script src="vue.js"></script>
+  </head>
+  <body>
+    <!-- 事件绑定-参数传递 -->
+    <!-- 1.如果事件直接绑定函数名称,那么默认会传递事件对象作为事件函数的第一个参数 -->
+    <!-- 2.如果事件绑定函数调用,那么事件对象必须作为最后一个参数显示传递,并且事件对象的名称必需是$event -->
+    <div id="app">
+      <div>{{num}}</div>
+      <!-- 函数调用 -->
+      <input type="button" @click="handle" value="按钮3" />
+      <!-- 单参数 -->
+      <input type="button" @click="handle1(123)" value="按钮4" />
+      <!-- 多参数 -->
+      <input type="button" @click="handle2(123,456)" value="按钮5" />
+      <!-- 参数+事件对象 -->
+      <input type="button" @click="handle3(123,456,$event)" value="按钮6" />
+    </div>
+    <script>
+      var vm = new Vue({
+        el: '#app',
+        data: {
+          num: 0,
+        },
+        methods: {
+          handle: function () {
+            // 这里的this是vue的实例对象 不可以直接访问num
+            this.num++;
+          },
+          handle1: function (p) {
+            console.log(p);
+            this.num++;
+          },
+          handle2: function (p, p1) {
+            console.log(p);
+            console.log(p, p1);
+            this.num++;
+          },
+          handle3: function (p, p1, event) {
+            console.log(p);
+            console.log(p, p1);
+            console.log(p, p1, event);
+            console.log(event.target);
+            this.num++;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

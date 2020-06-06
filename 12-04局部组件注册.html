@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <script src="vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <hello-world></hello-world>
+      <hello-java></hello-java>
+      <hello-oc></hello-oc>
+    </div>
+
+    <script>
+      /*局部组件注册:
+      局部组件只能在注册他的父组件中使用
+      */
+      var helloWorld = {
+        data: function () {
+          return {
+            msg: 'hello world',
+          };
+        },
+        template: '<div>{{msg}}</div>',
+      };
+      var helloJava = {
+        data: function () {
+          return {
+            msg: 'hello Java',
+          };
+        },
+        template: '<div>{{msg}}</div>',
+      };
+      var helloOc = {
+        data: function () {
+          return {
+            msg: 'hello OC',
+          };
+        },
+        template: '<div>{{msg}}</div>',
+      };
+      var vm = new Vue({
+        el: '#app',
+        data: {
+          msg: '',
+        },
+        methods: {
+          handle: function () {},
+        },
+        components: {
+          'hello-world': helloWorld,
+          'hello-java': helloJava,
+          'hello-oc': helloOc,
+        },
+        directives: {},
+      });
+    </script>
+  </body>
+</html>
